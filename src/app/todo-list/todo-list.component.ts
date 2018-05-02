@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GetTodoService } from '../get-todo.service';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _getTodo: GetTodoService) { }
+
+  public tasks;
 
   ngOnInit() {
+    this.getTodos();
   }
 
+  getTodos() {
+    this._getTodo.getTodos().subscribe(
+      data => { this.tasks = data},
+      err => console.error(err),
+      () => console.log('done loading todos')
+    );
+  }
 }
