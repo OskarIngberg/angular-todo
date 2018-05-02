@@ -1,0 +1,31 @@
+.todo {
+    width: 300px;
+    border: 1px solid #173341;
+    border-radius: 5px;
+    background-color: #E5F0E6;
+    margin-bottom: 50px;
+}
+
+.todo h3 {
+    text-align: center;
+    border-bottom: 1px solid #173341;
+    padding-bottom: 15px;
+}
+
+.tasks {
+    margin: 20px 0;
+}
+
+.todo .task {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.todo .task p, .todo .task i {
+    display: inline;
+}
+
+.todo .task i {
+    cursor: pointer;
+    margin-right: 10px;
+}

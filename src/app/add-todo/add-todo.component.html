@@ -1,0 +1,9 @@
+<form class="add-todo">
+  <h2>Add new todo:</h2>
+  <input class="default-task" name="title" type="text" placeholder="Title" ngModel>
+  <div id="tasks">
+    <input class="default-task" name="task" type="text" placeholder="Task" ngModel>
+  </div>
+  <i (click)="addTask()" class="fas fa-plus"></i>
+  <button (click)="addTodo($event)">Add Todo</button>
+</form>

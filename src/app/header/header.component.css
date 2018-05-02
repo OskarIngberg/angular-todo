@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    justify-content: center;
+    background-color: #D1DDBD;
+}
+
+header img {
+    width: 100px;
+}
+
+header h1 {
+    padding-top: 36px;
+    padding-left: 20px;
+}

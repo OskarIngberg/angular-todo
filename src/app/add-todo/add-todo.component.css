@@ -1,0 +1,46 @@
+.add-todo {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.add-todo h2 {
+    text-align: center;
+}
+
+.add-todo .default-task, .add-todo .added-task input {
+    height: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #173341;
+    padding-left: 5px;
+}
+
+.add-todo .default-task {
+    width: 100%;
+}
+
+.add-todo .added-task input {
+    width: 90%;
+}
+
+.add-todo i {
+    cursor: pointer;
+}
+
+.add-todo .added-task i {
+    padding-left: 15px;
+}
+
+.add-todo button {
+    display: block;
+    margin: 10px auto;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid #173341;
+    cursor: pointer;
+}
+
+.add-todo button:hover {
+    background-color: #FAFAFA;
+}
