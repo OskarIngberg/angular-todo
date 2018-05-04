@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core';
+import { TodoService } from '../todo.service'
 
 @Component({
   selector: 'app-add-todo',
@@ -8,7 +9,10 @@ import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core'
 })
 export class AddTodoComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(
+    private elementRef: ElementRef,
+    private _TodoService: TodoService
+  ) { }
 
   ngOnInit() {
   }
@@ -57,7 +61,10 @@ export class AddTodoComponent implements OnInit {
       todo.tasks.push(task);
     });
 
-    console.log(todo);
+    this._TodoService.postTodo(todo).subscribe(
+      data => console.log('sucess'),
+      err => console.log(err)
+    );
   }
 
 }

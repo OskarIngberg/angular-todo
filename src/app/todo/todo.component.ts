@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-todo',
@@ -15,6 +15,8 @@ export class TodoComponent implements OnInit {
     { task: 'Test Task 2', done: false, id: 2 },
     { task: 'Test Task 3', done: false, id: 3 }
   ];
+
+  @Input() todos;
 
   ngOnInit() {
   }
