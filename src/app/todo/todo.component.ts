@@ -9,22 +9,22 @@ export class TodoComponent implements OnInit {
 
   constructor() { }
 
-  title: string = 'Test';
-  tasks = [
-    { task: 'Test Task 1', done: false, id: 1 },
-    { task: 'Test Task 2', done: false, id: 2 },
-    { task: 'Test Task 3', done: false, id: 3 }
-  ];
-
   @Input() todos;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  taskDone(id) {
-    this.tasks.forEach(element => {
-      if (element.id === id) {
-        element.done = !element.done;
+  taskDone(todoId, taskId) {
+    // console.log('TodoId: ', todoId);
+    // console.log('TaksId: ', taskId);
+    // this.todos.forEach(todo => {
+    //   console.log(todo);
+    //   if (todo.task._id === id) {
+    //     todo.task.done = !todo.task.done;
+    //   }
+    // });
+    var todo = this.todos.forEach(todo => {
+      if (todo._id === todoId) {
+        console.log(todo);
       }
     });
   }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Rx';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor(private _TodoService: TodoService) { }
+  constructor(private _TodoService: TodoService) {}
 
   public tasks;
 

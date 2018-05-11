@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { TodoService } from '../todo.service'
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-add-todo',
@@ -13,6 +14,10 @@ export class AddTodoComponent implements OnInit {
     private elementRef: ElementRef,
     private _TodoService: TodoService
   ) { }
+
+  @Output() updateTodoList = new EventEmitter();
+
+  numOfAddedTasks: number = 0;
 
   ngOnInit() {
   }
@@ -35,11 +40,14 @@ export class AddTodoComponent implements OnInit {
     newTaskWrapper.appendChild(newTaskInput);
     newTaskWrapper.appendChild(removeTaskIcon);
     tasksWrapper.appendChild(newTaskWrapper);
+
+    this.numOfAddedTasks++;
   }
 
   removeTask(event): void {
     var elementToRemove = event.srcElement.parentElement;
     elementToRemove.remove();
+    this.numOfAddedTasks--;
   }
 
   addTodo(event): void {
@@ -59,10 +67,25 @@ export class AddTodoComponent implements OnInit {
       }
 
       todo.tasks.push(task);
+      element.value = '';
     });
 
+    if (this.numOfAddedTasks > 0) {
+      var tasksWrapper = this.elementRef.nativeElement.querySelector('#tasks');
+      var addedTasks = tasksWrapper.querySelectorAll('.added-task');
+      
+      addedTasks.forEach(element => {
+        element.remove();
+      });
+    };
+
+    title.value = '';
+
     this._TodoService.postTodo(todo).subscribe(
-      data => console.log('sucess'),
+      data => { 
+        console.log('New Todo was added: ', todo);
+        this.updateTodoList.emit();
+      },
       err => console.log(err)
     );
   }
