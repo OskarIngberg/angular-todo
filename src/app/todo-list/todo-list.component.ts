@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { Observable } from 'rxjs/Rx';
 
@@ -11,7 +11,7 @@ export class TodoListComponent implements OnInit {
 
   constructor(private _TodoService: TodoService) {}
 
-  public tasks;
+  public todos;
 
   ngOnInit() {
     this.getTodos();
@@ -19,7 +19,7 @@ export class TodoListComponent implements OnInit {
 
   getTodos() {
     this._TodoService.getTodos().subscribe(
-      data => { this.tasks = data; console.log(this.tasks); },
+      data => this.todos = data,
       err => console.error(err)
     );
   }

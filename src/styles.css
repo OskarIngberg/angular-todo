@@ -11,3 +11,7 @@ body {
 *:focus {
     outline: none;
 }
+
+input, textarea {
+    font-family: 'Gothic A1', sans-serif;
+}

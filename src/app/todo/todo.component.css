@@ -1,4 +1,5 @@
 .todo {
+    position: relative;
     width: 300px;
     border: 1px solid #173341;
     border-radius: 5px;
@@ -11,10 +12,35 @@
     margin-left: 0;
 }
 
-.todo h3 {
+.todo .delete-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.todo .edit-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.todo .title {
     text-align: center;
     border-bottom: 1px solid #173341;
     padding-bottom: 15px;
+}
+
+.todo .title-input {
+    background: none;
+    padding: 20px 0;
+    width: 99%;
+    font-size: 1.17em;
+    font-weight: bold;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
 }
 
 .tasks {
@@ -26,6 +52,13 @@
     margin: 0 auto;
 }
 
+.todo .task .task-input {
+    margin: 0;
+    background: none;
+    border: 0;
+    font-size: 16px;
+}
+
 .todo .task p, .todo .task i {
     display: inline;
 }
@@ -34,4 +67,28 @@
 .todo .task i {
     cursor: pointer;
     margin-right: 10px;
+}
+
+.todo .delete-confirm {
+    width: 100%;
+    position: absolute;
+    background-color: #E5F0E6;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.todo .delete-confirm p {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.todo .delete-confirm .delete-confirm-buttons {
+    float: right;
+    padding-right: 15px;
+}
+
+.todo .delete-confirm .delete-confirm-buttons button {
+    border-radius: 5px;
+    border: 1px solid #173341;
+    cursor: pointer;
 }

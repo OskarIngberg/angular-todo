@@ -1,1 +1,3 @@
-<app-todo [todos]="tasks" class="todo-list"></app-todo>
+<div class="todo-list">
+    <app-todo *ngFor="let todo of todos" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
+</div>

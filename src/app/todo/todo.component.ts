@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,26 +8,65 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _TodoService: TodoService) { }
 
-  @Input() todos;
+  @Input() todo;
+  @Output() updateTodoList: EventEmitter<any> = new EventEmitter<any>();
+  private edit: boolean = false;
+  private showDeleteConfirm: boolean = false;
 
   ngOnInit() {}
 
-  taskDone(todoId, taskId) {
-    // console.log('TodoId: ', todoId);
-    // console.log('TaksId: ', taskId);
-    // this.todos.forEach(todo => {
-    //   console.log(todo);
-    //   if (todo.task._id === id) {
-    //     todo.task.done = !todo.task.done;
-    //   }
-    // });
-    var todo = this.todos.forEach(todo => {
-      if (todo._id === todoId) {
-        console.log(todo);
+  taskDone(taskId) {
+    var todo = this.todo.tasks.forEach(task => {
+      if (task._id === taskId) {
+        task.done = !task.done;
+        this.updateTask(this.todo);
       }
     });
   }
 
+  updateTask(body) {
+    this._TodoService.updateTodo(body, body._id);
+  }
+
+  updateTodoTitle(event) {
+    this.todo.title = event.srcElement.value;
+  }
+
+  updateTaskInput(event, id) {
+    this.todo.tasks.forEach(task => {
+      if (task._id === id) {
+        task.task = event.srcElement.value;
+      }
+    });
+  }
+
+  editTodo() {
+    this.edit = !this.edit;
+  }
+
+  editTodoCancel() {
+    this.editTodo();
+    this.updateTodoList.emit();
+  }
+
+  editTodoDone() {
+    this.editTodo();
+    this.updateTask(this.todo);
+  }
+
+  deleteTodoConfirmShow() {
+    this.showDeleteConfirm = !this.showDeleteConfirm;
+  }
+
+  deleteTodo(id) {
+    this._TodoService.deleteTodo(id).subscribe(
+      body => {
+        this.updateTodoList.emit();
+        this.deleteTodoConfirmShow();
+      },
+      err => console.log(err)
+    );
+  }
 }

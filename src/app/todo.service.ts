@@ -15,4 +15,12 @@ export class TodoService {
   postTodo(body) {
     return this.http.post(taskRoute, body);
   }
+
+  updateTodo(body, id) {
+    return this.http.put(`${taskRoute}/${id}`, body);
+  }
+
+  deleteTodo(id) {
+    return this.http.delete(`${taskRoute}/${id}`);
+  }
 }
