@@ -1,15 +1,9 @@
 .todo {
     position: relative;
-    width: 300px;
+    width: 280px;
     border: 1px solid #173341;
     border-radius: 5px;
     background-color: #E5F0E6;
-    margin-bottom: 50px;
-    margin-right: 20px;
-}
-
-.todo:last-child {
-    margin-left: 0;
 }
 
 .todo .delete-icon {

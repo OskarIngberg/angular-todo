@@ -4,11 +4,20 @@ header {
     background-color: #D1DDBD;
 }
 
-header img {
-    width: 100px;
+header .logo {
+    width: 400px;
+    position: relative;
 }
 
-header h1 {
-    padding-top: 36px;
+header .logo img {
+    width: 100px;
+    position: absolute;
+    left: 0;
+}
+
+header .logo h1 {
+    padding-top: 15px;
     padding-left: 20px;
+    padding-bottom: 20px;
+    text-align: center;
 }

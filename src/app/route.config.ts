@@ -1,3 +1,16 @@
-const taskRoute = 'http://localhost:3000/tasks';
+import { Routes } from '@angular/router';
+import { TodoPageComponent } from './todo-page/todo-page.component';
 
-export { taskRoute };
+const routes: Routes = [
+    {
+      path: '',
+      redirectTo: 'todos',
+      pathMatch: 'full'
+    },
+    {
+      path: 'todos',
+      component: TodoPageComponent
+    }
+];
+
+export { routes };

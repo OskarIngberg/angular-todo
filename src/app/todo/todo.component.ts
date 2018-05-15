@@ -27,7 +27,10 @@ export class TodoComponent implements OnInit {
   }
 
   updateTask(body) {
-    this._TodoService.updateTodo(body, body._id);
+    this._TodoService.updateTodo(body, body._id).subscribe(
+      data => {},
+      err => console.log(err)
+    );
   }
 
   updateTodoTitle(event) {
