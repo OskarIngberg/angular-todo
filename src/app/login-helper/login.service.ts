@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
+
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import { LoginCrudService } from './login-crud/login-crud.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,26 +13,31 @@ export class LoginService {
   private userLogedIn: BehaviorSubject<boolean>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private _LoginCrudService: LoginCrudService
   ) {
     this.userLogedIn = new BehaviorSubject<boolean>(false);
   }
 
-
-  login(username, password) {
-    if (username === 'test' && password === 'test') {
-      this.userLogedIn.next(true);
-      this.router.navigate(['/todos']);
-    } else {
-      this.userLogedIn.next(false);
-    }
+  public login(username, password) {
+    this._LoginCrudService.checkUserCredentials(username, password).subscribe(
+      success => {
+        if (success) {
+          this.userLogedIn.next(true);
+          this.router.navigate(['/todos']);
+        } else {
+          console.log('No user');
+        }
+      },
+      error => console.log(error)
+    );
   }
 
-  logout() {
+  public logout() {
     this.userLogedIn.next(false);
   }
 
-  isLogedIn(): Observable<boolean> {
+  public isLogedIn(): Observable<boolean> {
     return this.userLogedIn;
   }
 

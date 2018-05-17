@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(event):void {
+  login(event): void {
     const form = event.srcElement.parentElement;
     const username = form.querySelector('[name="username"]').value;
     const password = form.querySelector('[name="password"]').value;

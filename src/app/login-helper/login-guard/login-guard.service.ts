@@ -7,14 +7,17 @@ import { LoginService } from '../login.service';
   providedIn: 'root'
 })
 export class LoginGuardService implements CanActivate {
+  isLogedIn: boolean = false;
+
   constructor(
     private router: Router,
     private _LoginService: LoginService
-  ) {}
+  ) {
+    this._LoginService.isLogedIn().subscribe(value => this.isLogedIn = value);
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('isLogedIn: ', this._LoginService.isLogedIn());
-    if (this._LoginService.isLogedIn()) {
+    if (this.isLogedIn) {
       return true;
     } else {
       this.router.navigate(['/login']);

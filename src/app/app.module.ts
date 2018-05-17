@@ -9,6 +9,7 @@ import { routes } from './route.config';
 import { TodoService } from './todo.service';
 import { LoginService } from './login-helper/login.service';
 import { LoginGuardService } from './login-helper/login-guard/login-guard.service';
+import { LoginCrudService } from './login-helper/login-crud/login-crud.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -39,7 +40,8 @@ import { LoginComponent } from './login/login.component';
   providers: [
     TodoService,
     LoginService,
-    LoginGuardService
+    LoginGuardService,
+    LoginCrudService
   ],
   bootstrap: [AppComponent]
 })
