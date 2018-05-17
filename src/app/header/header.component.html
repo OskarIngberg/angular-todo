@@ -5,4 +5,6 @@
       Angular Todo
     </h1>
   </div>
+  <a *ngIf="!loggedIn" href="/login">Log In</a>
+  <a *ngIf="loggedIn" (click)="logout()" href="/login">Logout</a>
 </header>
