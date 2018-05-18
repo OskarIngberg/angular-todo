@@ -23,8 +23,12 @@ header .logo h1 {
     text-align: center;
 }
 
-header a {
+header .links {
     position: absolute;
     bottom: 20px;
     right: 200px;
+}
+
+header .links a {
+    padding-right: 10px;
 }

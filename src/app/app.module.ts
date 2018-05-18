@@ -10,6 +10,7 @@ import { TodoService } from './todo.service';
 import { LoginService } from './login-helper/login.service';
 import { LoginGuardService } from './login-helper/login-guard/login-guard.service';
 import { LoginCrudService } from './login-helper/login-crud/login-crud.service';
+import { CreateAccountService } from './create-account-helper/create-account.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +20,8 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoPageComponent } from './todo-page/todo-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginComponent } from './login/login.component';
+import { CreateAccountPageComponent } from './create-account-page/create-account-page.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { LoginComponent } from './login/login.component';
     TodoListComponent,
     TodoPageComponent,
     LoginPageComponent,
-    LoginComponent
+    LoginComponent,
+    CreateAccountPageComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { LoginComponent } from './login/login.component';
     TodoService,
     LoginService,
     LoginGuardService,
-    LoginCrudService
+    LoginCrudService,
+    CreateAccountService
   ],
   bootstrap: [AppComponent]
 })
