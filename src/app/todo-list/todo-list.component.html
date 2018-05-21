@@ -15,5 +15,4 @@
         <h3>Not at all urgent todos:</h3>
         <app-todo *ngFor="let todo of todos | todofilter:'low'" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
     </div>
-    <!-- <app-todo *ngFor="let todo of todos" [todo]="todo" (updateTodoList)='getTodos()'></app-todo> -->
 </div>
