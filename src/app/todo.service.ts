@@ -7,8 +7,8 @@ import { taskRoute } from './apiRoute.config';
 export class TodoService {
   constructor(private http: HttpClient) {}
   
-  getTodos() {
-    return this.http.get(taskRoute);
+  getTodos(user) {
+    return this.http.get(`${taskRoute}/${user}`);
   }
 
   postTodo(body) {

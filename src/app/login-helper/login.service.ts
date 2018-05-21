@@ -11,12 +11,14 @@ import { LoginCrudService } from './login-crud/login-crud.service';
 export class LoginService {
 
   private userLogedIn: BehaviorSubject<boolean>;
+  private username: BehaviorSubject<string>;
 
   constructor(
     private router: Router,
     private _LoginCrudService: LoginCrudService
   ) {
     this.userLogedIn = new BehaviorSubject<boolean>(false);
+    this.username = new BehaviorSubject<string>('');
   }
 
   public login(username, password) {
@@ -24,6 +26,7 @@ export class LoginService {
       success => {
         if (success) {
           this.userLogedIn.next(true);
+          this.username.next(username);
           this.router.navigate(['/todos']);
         } else {
           console.log('No user');
@@ -35,6 +38,7 @@ export class LoginService {
 
   public logout() {
     this.userLogedIn.next(false);
+    this.username.next('');
   }
 
   public isLogedIn(): Observable<boolean> {
@@ -43,5 +47,9 @@ export class LoginService {
 
   public getTheBoolean(): Observable<boolean> {
     return this.userLogedIn.asObservable();
-}
+  }
+
+  public getUsername(): Observable<string> {
+    return this.username.asObservable();
+  }
 }

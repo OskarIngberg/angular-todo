@@ -7,6 +7,10 @@
     text-align: center;
 }
 
+.add-todo label[for=urgency] {
+    margin-right: 10px;
+}
+
 .add-todo .default-task, .add-todo .added-task input {
     height: 20px;
     margin: 10px 0;

@@ -1,9 +1,21 @@
 .todo-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
-app-todo {
-    margin-bottom: 50px;
-    margin-right: 20px;
+.todo-list .todo-list-filter {
+    margin-right: 15px;
+    border: 1px solid #173341;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #e5f0e62e;
+    width: 280px;
+    margin-bottom: 20px;
+}
+
+.todo-list .todo-list-filter h3 {
+    text-align: center;
 }

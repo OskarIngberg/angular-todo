@@ -23,6 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { CreateAccountPageComponent } from './create-account-page/create-account-page.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 
+import { TodofilterPipe } from './todofilter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     LoginPageComponent,
     LoginComponent,
     CreateAccountPageComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    TodofilterPipe
   ],
   imports: [
     BrowserModule,

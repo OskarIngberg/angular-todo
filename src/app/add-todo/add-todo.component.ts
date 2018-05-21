@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { TodoService } from '../todo.service'
-import { element } from 'protractor';
+import { LoginService } from '../login-helper/login.service';
 
 @Component({
   selector: 'app-add-todo',
@@ -9,11 +9,15 @@ import { element } from 'protractor';
   styleUrls: ['./add-todo.component.css']
 })
 export class AddTodoComponent implements OnInit {
+  username: string = '';
 
   constructor(
     private elementRef: ElementRef,
-    private _TodoService: TodoService
-  ) { }
+    private _TodoService: TodoService,
+    private _LoginService: LoginService
+  ) {
+    this._LoginService.getUsername().subscribe(value => this.username = value);
+  }
 
   @Output() updateTodoList = new EventEmitter();
 
@@ -54,9 +58,13 @@ export class AddTodoComponent implements OnInit {
     const form = event.srcElement.parentElement;
     const title = form.querySelector('[name="title"]');
     const tasks = form.querySelectorAll('[name="task"]');
+    const urgency = form.querySelector('select');
 
     let todo = {
+      user: this.username,
       title: title.value,
+      Created_date: Date.now(),
+      urgency: urgency.value,
       tasks: []
     };
 

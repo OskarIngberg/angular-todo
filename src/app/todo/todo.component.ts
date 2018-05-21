@@ -45,6 +45,10 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  updateUrgency(event) {
+    this.todo.urgency = event.srcElement.value;
+  }
+
   editTodo() {
     this.edit = !this.edit;
   }
@@ -54,9 +58,13 @@ export class TodoComponent implements OnInit {
     this.updateTodoList.emit();
   }
 
-  editTodoDone() {
+  editTodoDone(event) {
     this.editTodo();
+    let form = event.srcElement.parentElement;
+    let urgency = form.querySelector('select').value;
+    this.todo.urgency = urgency;
     this.updateTask(this.todo);
+    this.updateTodoList.emit();
   }
 
   deleteTodoConfirmShow() {

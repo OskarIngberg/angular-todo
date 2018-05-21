@@ -1,3 +1,19 @@
 <div class="todo-list">
-    <app-todo *ngFor="let todo of todos" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
+    <div class="todo-list-filter">
+        <h3>Very urgent todos:</h3>
+        <app-todo *ngFor="let todo of todos | todofilter:'veryUrgent'" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
+    </div>
+    <div class="todo-list-filter">
+        <h3>Urgent todos:</h3>
+        <app-todo *ngFor="let todo of todos | todofilter:'urgent'" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
+    </div>
+    <div class="todo-list-filter">
+        <h3>Not so urgent todos:</h3>
+        <app-todo *ngFor="let todo of todos | todofilter:'middle'" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
+    </div>
+    <div class="todo-list-filter">
+        <h3>Not at all urgent todos:</h3>
+        <app-todo *ngFor="let todo of todos | todofilter:'low'" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>
+    </div>
+    <!-- <app-todo *ngFor="let todo of todos" [todo]="todo" (updateTodoList)='getTodos()'></app-todo> -->
 </div>
