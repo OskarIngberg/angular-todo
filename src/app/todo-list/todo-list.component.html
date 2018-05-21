@@ -1,4 +1,4 @@
-<div class="todo-list">
+<div *ngIf="showTodos" class="todo-list">
     <div class="todo-list-filter">
         <h3>Very urgent todos:</h3>
         <app-todo *ngFor="let todo of todos | todofilter:'veryUrgent'" [todo]="todo" (updateTodoList)='getTodos()'></app-todo>

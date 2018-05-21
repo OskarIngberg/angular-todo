@@ -20,6 +20,7 @@ export class TodoListComponent implements OnInit {
   }
 
   public todos;
+  public showTodos: boolean = false;
 
   ngOnInit() {
     this.getTodos();
@@ -27,7 +28,12 @@ export class TodoListComponent implements OnInit {
 
   getTodos() {
     this._TodoService.getTodos(this.username).subscribe(
-      data => this.todos = data,
+      data => {
+        this.todos = data
+        if (this.todos.length > 0) {
+          this.showTodos = !this.showTodos;
+        }
+      },
       err => console.error(err)
     );
   }
