@@ -22,7 +22,7 @@
 <div class="todo" *ngIf="edit">
   <i class="fas fa-times delete-icon" (click)="editTodoCancel()"></i>
   <i class="fas fa-check edit-icon" (click)="editTodoDone($event)"></i>
-  <select name="urgency" (change)="updateUrgency($event)">
+  <select name="urgency">
       <option value="veryUrgent">Very urgent</option>
       <option value="urgent">Urgent</option>
       <option value="middle">Middle</option>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { taskRoute } from './apiRoute.config';
+import { taskRoute } from '../../config/apiRoute.config';
 
 @Injectable()
 export class TodoService {

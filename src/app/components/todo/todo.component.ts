@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TodoService } from '../todo.service';
+import { TodoService } from '../../service/todo/todo.service';
 
 @Component({
-  selector: 'app-todo',
+  selector: 'todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css']
 })
@@ -43,10 +43,6 @@ export class TodoComponent implements OnInit {
         task.task = event.srcElement.value;
       }
     });
-  }
-
-  updateUrgency(event) {
-    this.todo.urgency = event.srcElement.value;
   }
 
   editTodo() {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateAccountService } from '../create-account-helper/create-account.service';
+import { CreateAccountService } from '../../service/create-account-helper/create-account.service';
 
 @Component({
-  selector: 'app-create-account',
+  selector: 'create-account',
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.css']
 })

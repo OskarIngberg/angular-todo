@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TodoService } from '../todo.service';
+import { TodoService } from '../../service/todo/todo.service';
 import { Observable } from 'rxjs';
 
-import { LoginService } from '../login-helper/login.service';
+import { LoginService } from '../../service/login-helper/login.service';
 
 @Component({
-  selector: 'app-todo-list',
+  selector: 'todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
@@ -30,8 +30,11 @@ export class TodoListComponent implements OnInit {
     this._TodoService.getTodos(this.username).subscribe(
       data => {
         this.todos = data
+
         if (this.todos.length > 0) {
-          this.showTodos = !this.showTodos;
+          this.showTodos = true;
+        } else {
+          this.showTodos = false;
         }
       },
       err => console.error(err)

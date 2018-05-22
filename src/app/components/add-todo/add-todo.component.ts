@@ -1,9 +1,9 @@
 import { Component, OnInit, ElementRef, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
-import { TodoService } from '../todo.service'
-import { LoginService } from '../login-helper/login.service';
+import { TodoService } from '../../service/todo/todo.service';
+import { LoginService } from '../../service/login-helper/login.service';
 
 @Component({
-  selector: 'app-add-todo',
+  selector: 'add-todo',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './add-todo.component.html',
   styleUrls: ['./add-todo.component.css']
