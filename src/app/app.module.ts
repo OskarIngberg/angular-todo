@@ -25,6 +25,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CreateAccountPageComponent } from './pages/create-account-page/create-account-page.component';
 
 import { TodofilterPipe } from './pipes/todofilter/todofilter.pipe';
+import { OrderByPipe } from './pipes/orderBy/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TodofilterPipe } from './pipes/todofilter/todofilter.pipe';
     LoginComponent,
     CreateAccountPageComponent,
     CreateAccountComponent,
-    TodofilterPipe
+    TodofilterPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

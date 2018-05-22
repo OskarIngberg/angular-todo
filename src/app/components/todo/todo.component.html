@@ -22,19 +22,18 @@
 <div class="todo" *ngIf="edit">
   <i class="fas fa-times delete-icon" (click)="editTodoCancel()"></i>
   <i class="fas fa-check edit-icon" (click)="editTodoDone($event)"></i>
+  <i class="fas fa-angle-up move-icon top"></i>
   <select name="urgency">
-      <option value="veryUrgent">Very urgent</option>
-      <option value="urgent">Urgent</option>
-      <option value="middle">Middle</option>
-      <option value="low">Low</option>
-    </select>
+    <option *ngFor="let urgency of urgencyArray" [value]="urgency.name" [selected]="urgency.name === todo.urgency">{{ urgency.text }}</option>
+  </select>
   <input class="title title-input" type="text" [value]="todo.title" (change)="updateTodoTitle($event)">
   <div class="tasks">
-      <div class="task" *ngFor="let task of todo.tasks">
-        <i *ngIf="task.done" (click)="taskDone(task._id)" class="far fa-check-circle"></i>
-        <i *ngIf="!task.done" (click)="taskDone(task._id)" class="far fa-circle"></i>
-        <input class="task-input" type="text" [value]="task.task" (change)="updateTaskInput($event, task._id)">
-      </div>
-      <p class="todo-created">Created: {{ todo.Created_date | date:'yyyy/MM/dd HH:mm' }}</p>
+    <div class="task" *ngFor="let task of todo.tasks">
+      <i *ngIf="task.done" (click)="taskDone(task._id)" class="far fa-check-circle"></i>
+      <i *ngIf="!task.done" (click)="taskDone(task._id)" class="far fa-circle"></i>
+      <input class="task-input" type="text" [value]="task.task" (change)="updateTaskInput($event, task._id)">
     </div>
+    <p class="todo-created">Created: {{ todo.Created_date | date:'yyyy/MM/dd HH:mm' }}</p>
+  </div>
+  <i class="fas fa-angle-down move-icon bottom"></i>
 </div>

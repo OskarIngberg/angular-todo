@@ -14,6 +14,24 @@ export class TodoComponent implements OnInit {
   @Output() updateTodoList: EventEmitter<any> = new EventEmitter<any>();
   private edit: boolean = false;
   private showDeleteConfirm: boolean = false;
+  private urgencyArray = [
+    {
+      name: 'veryUrgent',
+      text: 'Very urgent'
+    },
+    {
+      name: 'urgent',
+      text: 'Urgent'
+    },
+    {
+      name: 'middle',
+      text: 'Middle'
+    },
+    {
+      name: 'low',
+      text: 'Low'
+    }
+  ];
 
   ngOnInit() {}
 
@@ -21,14 +39,16 @@ export class TodoComponent implements OnInit {
     var todo = this.todo.tasks.forEach(task => {
       if (task._id === taskId) {
         task.done = !task.done;
-        this.updateTask(this.todo);
+        this.updateTodo(this.todo);
       }
     });
   }
 
-  updateTask(body) {
+  updateTodo(body) {
     this._TodoService.updateTodo(body, body._id).subscribe(
-      data => {},
+      data => {
+        this.updateTodoList.emit();
+      },
       err => console.log(err)
     );
   }
@@ -37,7 +57,7 @@ export class TodoComponent implements OnInit {
     this.todo.title = event.srcElement.value;
   }
 
-  updateTaskInput(event, id) {
+  updateTodoInput(event, id) {
     this.todo.tasks.forEach(task => {
       if (task._id === id) {
         task.task = event.srcElement.value;
@@ -59,8 +79,7 @@ export class TodoComponent implements OnInit {
     let form = event.srcElement.parentElement;
     let urgency = form.querySelector('select').value;
     this.todo.urgency = urgency;
-    this.updateTask(this.todo);
-    this.updateTodoList.emit();
+    this.updateTodo(this.todo);
   }
 
   deleteTodoConfirmShow() {

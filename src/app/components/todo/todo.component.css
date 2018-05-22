@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     border-top: 1px solid #173341;
+    border-bottom: 1px solid #173341;
     background-color: #E5F0E6;
 }
 
@@ -27,19 +28,33 @@
 
 .todo select {
     position: absolute;
-    top: 43px;
+    top: 39px;
+}
+
+.todo .move-icon {
+    position: absolute;
+    left: 132px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.todo .top {
+    top: 0;
+}
+
+.todo .bottom {
+    bottom: 0;
 }
 
 .todo .title-input {
     background: none;
-    padding: 20px 0;
     width: 99%;
     font-size: 1.17em;
     font-weight: bold;
     border-left: 0;
     border-right: 0;
     border-top: 0;
-    margin-bottom: 14px;
+    margin: 20px 0;
 }
 
 .todo-created {

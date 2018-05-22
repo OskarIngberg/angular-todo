@@ -54,18 +54,39 @@ export class AddTodoComponent implements OnInit {
     this.numOfAddedTasks--;
   }
 
+  getUrgencyArray(urgency, user) {
+    let array = [];
+
+    const todos = this._TodoService.getTodos(user).subscribe(
+      data => {
+        data.forEach(todo => {
+          if (todo.urgency === urgency) {
+            array.push(todo);
+          }
+        });
+        return array;
+      },  
+      error => console.log(error)
+    );
+  }
+
   addTodo(event): void {
     const form = event.srcElement.parentElement;
     const title = form.querySelector('[name="title"]');
     const tasks = form.querySelectorAll('[name="task"]');
     const urgency = form.querySelector('select');
 
+    const getUrgencyArrayLength = this.getUrgencyArray(urgency.value, this.username);
+
+    console.log(getUrgencyArrayLength);
+
     let todo = {
       user: this.username,
       title: title.value,
       Created_date: Date.now(),
       urgency: urgency.value,
-      tasks: []
+      tasks: [],
+      order: getUrgencyArrayLength
     };
 
     tasks.forEach(element => {
@@ -89,13 +110,13 @@ export class AddTodoComponent implements OnInit {
 
     title.value = '';
 
-    this._TodoService.postTodo(todo).subscribe(
-      data => { 
-        console.log('New Todo was added: ', todo);
-        this.updateTodoList.emit();
-      },
-      err => console.log(err)
-    );
+    // this._TodoService.postTodo(todo).subscribe(
+    //   data => { 
+    //     console.log('New Todo was added: ', todo);
+    //     this.updateTodoList.emit();
+    //   },
+    //   err => console.log(err)
+    // );
   }
 
 }

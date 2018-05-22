@@ -7,13 +7,32 @@
     text-align: center;
 }
 
+.login-form .error-message {
+    width: 100%;
+    position: relative;
+    background-color: #ff0000b3;
+    padding: 10px 0;
+}
+
+.login-form .error-message .remove-icon {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    cursor: pointer;
+}
+
+.login-form .error-message h4 {
+    margin: 0;
+    text-align: center;
+}
+
 .login-form input {
     height: 20px;
     margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #173341;
     padding-left: 5px;
-    width: 100%;
+    width: 98%;
 }
 
 .login-form button {

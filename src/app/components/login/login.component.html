@@ -1,5 +1,9 @@
 <form class="login-form">
   <h2>Login</h2>
+  <div class="error-message" *ngIf="error">
+    <i class="fas fa-times remove-icon" (click)="removeError()"></i>
+    <h4>{{ errorMessage }}</h4>
+  </div>
   <input class="username" name="username" type="text" placeholder="Username">
   <input class="password" name="password" type="password" placeholder="Password">
   <button (click)="login($event)">Login</button>
