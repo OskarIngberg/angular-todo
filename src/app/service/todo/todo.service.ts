@@ -22,4 +22,43 @@ export class TodoService {
   deleteTodo(id) {
     return this.http.delete(`${taskRoute}/${id}`);
   }
+
+  getTodosFromUrgency(todos, urgency) {
+    let array = [];
+
+    todos.forEach(todo => {
+      if (todo.urgency === urgency) {
+        array.push(todo);
+      }
+    });
+
+    return array;
+  }
+
+  updateTodosOrder(todoInput, user, direction) {
+    let todosArray;
+
+    this.getTodos(user).subscribe(
+      todos => {
+        todosArray = this.getTodosFromUrgency(todos, todoInput.urgency);
+
+        todosArray.forEach(todo => {
+          if (direction === 'up') {
+            if (todo.order === todoInput.order - 1) {
+              todo.order++;
+            }
+          }
+
+          if (direction === 'down') {
+            if (todo.order === todoInput.order + 1) {
+              todo.order--;
+            }
+          }
+
+          this.updateTodo(todo, todo._id);
+        });
+      },
+      error => console.log(error)
+    );
+  }
 }

@@ -26,6 +26,10 @@ export class TodoListComponent implements OnInit {
     this.getTodos();
   }
 
+  updateTodoList() {
+    this.getTodos();
+  }
+
   getTodos() {
     this._TodoService.getTodos(this.username).subscribe(
       data => {

@@ -22,7 +22,7 @@
 <div class="todo" *ngIf="edit">
   <i class="fas fa-times delete-icon" (click)="editTodoCancel()"></i>
   <i class="fas fa-check edit-icon" (click)="editTodoDone($event)"></i>
-  <i class="fas fa-angle-up move-icon top"></i>
+  <i class="fas fa-angle-up move-icon top" (click)="moveTodo('up')"></i>
   <select name="urgency">
     <option *ngFor="let urgency of urgencyArray" [value]="urgency.name" [selected]="urgency.name === todo.urgency">{{ urgency.text }}</option>
   </select>
@@ -35,5 +35,5 @@
     </div>
     <p class="todo-created">Created: {{ todo.Created_date | date:'yyyy/MM/dd HH:mm' }}</p>
   </div>
-  <i class="fas fa-angle-down move-icon bottom"></i>
+  <i class="fas fa-angle-down move-icon bottom" (click)="moveTodo('down')"></i>
 </div>

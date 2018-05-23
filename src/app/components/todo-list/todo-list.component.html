@@ -1,18 +1,18 @@
 <div *ngIf="showTodos" class="todo-list">
     <div class="todo-list-filter">
         <h3>Very urgent todos:</h3>
-        <todo *ngFor="let todo of todos | todofilter:'veryUrgent'" [todo]="todo" (updateTodoList)='getTodos()'></todo>
+        <todo *ngFor="let todo of todos | todofilter:'veryUrgent' | orderBy:'order':ascending" [todo]="todo" (updateTodoList)='updateTodoList()'></todo>
     </div>
     <div class="todo-list-filter">
         <h3>Urgent todos:</h3>
-        <todo *ngFor="let todo of todos | todofilter:'urgent'" [todo]="todo" (updateTodoList)='getTodos()'></todo>
+        <todo *ngFor="let todo of todos | todofilter:'urgent' | orderBy:'order':ascending" [todo]="todo" (updateTodoList)='updateTodoList()'></todo>
     </div>
     <div class="todo-list-filter">
         <h3>Not so urgent todos:</h3>
-        <todo *ngFor="let todo of todos | todofilter:'middle'" [todo]="todo" (updateTodoList)='getTodos()'></todo>
+        <todo *ngFor="let todo of todos | todofilter:'middle' | orderBy:'order':ascending" [todo]="todo" (updateTodoList)='updateTodoList()'></todo>
     </div>
     <div class="todo-list-filter">
         <h3>Not at all urgent todos:</h3>
-        <todo *ngFor="let todo of todos | todofilter:'low'" [todo]="todo" (updateTodoList)='getTodos()'></todo>
+        <todo *ngFor="let todo of todos | todofilter:'low' | orderBy:'order':ascending" [todo]="todo" (updateTodoList)='updateTodoList()'></todo>
     </div>
 </div>

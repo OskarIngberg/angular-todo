@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../../service/todo/todo.service';
+import { LoginService } from '../../service/login-helper/login.service';
 
 @Component({
   selector: 'todo',
@@ -8,10 +9,9 @@ import { TodoService } from '../../service/todo/todo.service';
 })
 export class TodoComponent implements OnInit {
 
-  constructor(private _TodoService: TodoService) { }
-
   @Input() todo;
   @Output() updateTodoList: EventEmitter<any> = new EventEmitter<any>();
+  private username: string;
   private edit: boolean = false;
   private showDeleteConfirm: boolean = false;
   private urgencyArray = [
@@ -32,6 +32,13 @@ export class TodoComponent implements OnInit {
       text: 'Low'
     }
   ];
+
+  constructor(
+    private _TodoService: TodoService,
+    private _LoginService: LoginService
+  ) {
+    this._LoginService.getUsername().subscribe(value => this.username = value);
+  }
 
   ngOnInit() {}
 
@@ -63,6 +70,20 @@ export class TodoComponent implements OnInit {
         task.task = event.srcElement.value;
       }
     });
+  }
+
+  moveTodo(direction){
+    if (direction === 'up') {
+      this.todo.order--;
+    }
+
+    if (direction === 'down') {
+      this.todo.order++;
+    }
+
+    this.updateTodo(this.todo);
+    this._TodoService.updateTodosOrder(this.todo, this.username, direction);
+    this.updateTodoList.emit();
   }
 
   editTodo() {

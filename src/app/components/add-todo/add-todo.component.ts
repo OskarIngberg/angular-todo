@@ -10,21 +10,27 @@ import { LoginService } from '../../service/login-helper/login.service';
 })
 export class AddTodoComponent implements OnInit {
   username: string = '';
+  todos;
 
   constructor(
     private elementRef: ElementRef,
     private _TodoService: TodoService,
     private _LoginService: LoginService
   ) {
-    this._LoginService.getUsername().subscribe(value => this.username = value);
+    this._LoginService.getUsername().subscribe(
+      value => {
+        this.username = value;
+        this._TodoService.getTodos(this.username).subscribe(value => this.todos = value);
+      },
+      error => console.log(error)
+    );
   }
 
   @Output() updateTodoList = new EventEmitter();
 
   numOfAddedTasks: number = 0;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addTask(): void {
     var tasksWrapper = this.elementRef.nativeElement.querySelector('#tasks');
@@ -54,20 +60,15 @@ export class AddTodoComponent implements OnInit {
     this.numOfAddedTasks--;
   }
 
-  getUrgencyArray(urgency, user) {
-    let array = [];
-
-    const todos = this._TodoService.getTodos(user).subscribe(
-      data => {
-        data.forEach(todo => {
-          if (todo.urgency === urgency) {
-            array.push(todo);
-          }
-        });
-        return array;
-      },  
-      error => console.log(error)
-    );
+  removeAllAddedTasks(addedTasks) {
+    if (addedTasks > 0) {
+      var tasksWrapper = this.elementRef.nativeElement.querySelector('#tasks');
+      var addedTasks = tasksWrapper.querySelectorAll('.added-task');
+      
+      addedTasks.forEach(element => {
+        element.remove();
+      });
+    };
   }
 
   addTodo(event): void {
@@ -76,9 +77,7 @@ export class AddTodoComponent implements OnInit {
     const tasks = form.querySelectorAll('[name="task"]');
     const urgency = form.querySelector('select');
 
-    const getUrgencyArrayLength = this.getUrgencyArray(urgency.value, this.username);
-
-    console.log(getUrgencyArrayLength);
+    const getTodosFromUrgency = this._TodoService.getTodosFromUrgency(this.todos, urgency.value);
 
     let todo = {
       user: this.username,
@@ -86,7 +85,7 @@ export class AddTodoComponent implements OnInit {
       Created_date: Date.now(),
       urgency: urgency.value,
       tasks: [],
-      order: getUrgencyArrayLength
+      order: getTodosFromUrgency.length
     };
 
     tasks.forEach(element => {
@@ -99,24 +98,18 @@ export class AddTodoComponent implements OnInit {
       element.value = '';
     });
 
-    if (this.numOfAddedTasks > 0) {
-      var tasksWrapper = this.elementRef.nativeElement.querySelector('#tasks');
-      var addedTasks = tasksWrapper.querySelectorAll('.added-task');
-      
-      addedTasks.forEach(element => {
-        element.remove();
-      });
-    };
+    this.removeAllAddedTasks(this.numOfAddedTasks);
 
     title.value = '';
 
-    // this._TodoService.postTodo(todo).subscribe(
-    //   data => { 
-    //     console.log('New Todo was added: ', todo);
-    //     this.updateTodoList.emit();
-    //   },
-    //   err => console.log(err)
-    // );
+    this._TodoService.postTodo(todo).subscribe(
+      data => { 
+        console.log('New Todo was added: ', todo);
+        this.updateTodoList.emit();
+        this._TodoService.getTodos(this.username).subscribe(value => this.todos = value);
+      },
+      err => console.log(err)
+    );
   }
 
 }
